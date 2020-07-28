@@ -9,8 +9,11 @@
         <Authors>Nico Klage</Authors>
         <Company> </Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-<!--        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
-<!--        <OutDir>bin\$(Platform)\$(Configuration)\$(FrameworkVersion)</OutDir>-->
+        <PackageTags>MongoDB;Embedded MongoDB;MongoDB Server</PackageTags>
+        <Description>
+            Makes it possible to run unit test on a real MongoDB Instance without mocking the persistence layer.
+        </Description>
+        <PackageProjectUrl>https://github.com/NKlage/NK-MongoDB-Embedded</PackageProjectUrl>
     </PropertyGroup>
 
     <ItemGroup>
