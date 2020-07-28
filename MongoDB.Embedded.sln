@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NK.MongoDB.Embedded", "NK.MongoDB.Embedded\NK.MongoDB.Embedded.csproj", "{1A2F039D-5840-4920-8742-766C707CEAA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NK.MongoDB.Embedded.Test", "NK.MongoDB.Embedded.Test\NK.MongoDB.Embedded.Test.csproj", "{4E230B70-84BB-42C7-85A2-1DFE24C52F15}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NK.MongoDB.Embedded.Example", "NK.MongoDB.Embedded.Example\NK.MongoDB.Embedded.Example.csproj", "{09CDD702-7A7C-4D0C-98E9-A8948C4D7C84}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{606CFBCD-B726-413B-BBB8-E7BE20851C5E}"
+ProjectSection(SolutionItems) = preProject
+	appveyor.yml = appveyor.yml
+EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{7B3AF130-EC45-40DC-B16C-C955EB9E932C}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A2F039D-5840-4920-8742-766C707CEAA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A2F039D-5840-4920-8742-766C707CEAA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A2F039D-5840-4920-8742-766C707CEAA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A2F039D-5840-4920-8742-766C707CEAA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E230B70-84BB-42C7-85A2-1DFE24C52F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E230B70-84BB-42C7-85A2-1DFE24C52F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E230B70-84BB-42C7-85A2-1DFE24C52F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E230B70-84BB-42C7-85A2-1DFE24C52F15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09CDD702-7A7C-4D0C-98E9-A8948C4D7C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09CDD702-7A7C-4D0C-98E9-A8948C4D7C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09CDD702-7A7C-4D0C-98E9-A8948C4D7C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09CDD702-7A7C-4D0C-98E9-A8948C4D7C84}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

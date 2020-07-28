@@ -1,0 +1,45 @@
+version: 0.2.{build}
+
+branches:
+    only:
+        - master
+
+build_cloud: Process
+image: Linux
+
+dotnet_csproj:
+    patch: true
+    file: '**\*.csproj'
+    version: '{version}'
+    version_prefix: '{version}'
+    package_version: '{version}'
+    assembly_version: '{version}'
+    file_version: '{version}'
+    informational_version: '{version}-$(appveyor_repo_commit)'
+
+#platform: Any CPU
+configuration: Release
+
+build:
+    project: MongoDB.Embedded.sln
+    publish_nuget: false
+    publish_nuget_symbols: false
+    include_nuget_references: false
+
+before_package:
+    - sh: dotnet pack -p:PackageVersion=$APPVEYOR_BUILD_VERSION
+    - sh: cp ./NK.MongoDB.Embedded/bin/Release/NK.MongoDB.Embedded.$APPVEYOR_BUILD_VERSION.nupkg ./NK.MongoDB.Embedded.$APPVEYOR_BUILD_VERSION.nupkg
+    - sh: cp ./NK.MongoDB.Embedded/bin/Release/netcoreapp3.1/NK.MongoDB.Embedded.dll NK.MongoDB.Embedded.dll
+
+artifacts:
+    - path: 'NK.MongoDB.Embedded.$APPVEYOR_BUILD_VERSION.nupkg'
+      name: 'NuGet Package'
+    
+    - path: 'NK.MongoDB.Embedded.dll'
+      name: 'DLL'
+      
+#deploy:
+#    - provider: NuGet
+#      api_key:
+#          secure: 'oy2l7xeovwniar5xnsxaisap35fqvjvu5deffi66mrewby'
+#      artifact: 'NK.MongoDB.Embedded.$APPVEYOR_BUILD_VERSION.nupkg'

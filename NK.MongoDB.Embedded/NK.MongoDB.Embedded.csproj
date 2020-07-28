@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <PackageId>NK.MongoDB.Embedded</PackageId>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
+        <Version>0.0.1</Version>
+        <InformationalVersion>0.0.1</InformationalVersion>
+        <Authors>Nico Klage</Authors>
+        <Company> </Company>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+<!--        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>-->
+<!--        <OutDir>bin\$(Platform)\$(Configuration)\$(FrameworkVersion)</OutDir>-->
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="SharpZipLib" Version="1.2.0" />
+    </ItemGroup>
+
+</Project>
