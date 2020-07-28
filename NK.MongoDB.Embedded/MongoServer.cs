@@ -23,7 +23,6 @@ namespace NK.MongoDB.Embedded
         private Process _mongoProcess;
         private int _mongoServerPort = 27017;
         private string _dataFolder;
-        private bool _cleanup = false;
         private WebProxy _proxy;
         private NetworkCredential _credentails;
 
@@ -141,12 +140,18 @@ namespace NK.MongoDB.Embedded
             {
                 if (!Directory.Exists(Path.Combine(_userHomePath, _mongoHome)))
                     Directory.CreateDirectory(Path.Combine(_userHomePath, _mongoHome));
-                    
-                HttpClient client = null == _proxy ? new HttpClient() : new HttpClient(GetHttpClientHandler());
-                HttpResponseMessage response = await client.GetAsync(_builder.Build());
-                response.EnsureSuccessStatusCode();
-                byte[] result = await response.Content.ReadAsByteArrayAsync();
-                await File.WriteAllBytesAsync(archive, result);
+                Console.WriteLine($"Download Package: {archive}");
+                using (var client = new ProgressHttpClient(_builder.Build(), archive))
+                {
+                    client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
+                    {
+                        var totalFileSizeMb = (totalFileSize / 1024) / 1024;
+                        var bytesDownloadedMb = (totalBytesDownloaded / 1024) / 1024;
+                        Console.WriteLine($"{progressPercentage:N2}% ({bytesDownloadedMb} MB / {totalFileSizeMb} MB)");
+                    };
+
+                    await client.StartDownload();
+                }
             }
         }
 
