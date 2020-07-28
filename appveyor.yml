@@ -4,8 +4,7 @@ branches:
     only:
         - master
 
-build_cloud: Process
-image: Linux
+image: Ubuntu1804
 
 dotnet_csproj:
     patch: true
