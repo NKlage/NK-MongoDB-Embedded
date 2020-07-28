@@ -19,7 +19,6 @@ dotnet_csproj:
     file_version: '{version}'
     informational_version: '{version}-$(appveyor_repo_commit)'
 
-#platform: Any CPU
 configuration: Release
 
 build:
@@ -39,11 +38,3 @@ artifacts:
     
     - path: 'NK.MongoDB.Embedded.dll'
       name: 'DLL'
-      
-deploy:
-    - provider: NuGet
-      api_key:
-          secure: 1kaernBhu1yJt0j2VmkEsI1hzJuBm8qNn78DRtWwO9GGcn6ZYZq9sTliLHx/nsvA
-      skip_symbols: true
-      on:
-          branch: master
