@@ -2,7 +2,6 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
-using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.GZip;
@@ -141,13 +140,15 @@ namespace NK.MongoDB.Embedded
                 if (!Directory.Exists(Path.Combine(_userHomePath, _mongoHome)))
                     Directory.CreateDirectory(Path.Combine(_userHomePath, _mongoHome));
                 Console.WriteLine($"Download Package: {archive}");
+                
+                ProgressBar progressBar = new ProgressBar();
+                
                 using (var client = new ProgressHttpClient(_builder.Build(), archive))
                 {
                     client.ProgressChanged += (totalFileSize, totalBytesDownloaded, progressPercentage) =>
                     {
-                        var totalFileSizeMb = (totalFileSize / 1024) / 1024;
-                        var bytesDownloadedMb = (totalBytesDownloaded / 1024) / 1024;
-                        Console.WriteLine($"{progressPercentage:N2}% ({bytesDownloadedMb} MB / {totalFileSizeMb} MB)");
+                        if (progressPercentage != null) 
+                            progressBar.Report(progressPercentage.Value / 100);
                     };
 
                     await client.StartDownload();
@@ -155,28 +156,6 @@ namespace NK.MongoDB.Embedded
             }
         }
 
-        /// <summary>
-        /// ClientHandler for WebProxy
-        /// </summary>
-        /// <returns><see cref="HttpClientHandler"/></returns>
-        private HttpClientHandler GetHttpClientHandler()
-        {
-            HttpClientHandler handler = null;
-            if (null != _proxy)
-            {
-                handler = new HttpClientHandler
-                {
-                    Proxy = _proxy,
-                    PreAuthenticate = true,
-                    UseDefaultCredentials = null == _credentails
-                };
-                if (null != _credentails)
-                    handler.Credentials = _credentails;
-            }
-
-            return handler;
-        }
-        
         /// <summary>
         /// Extracts the TGZ Archive
         /// </summary>
