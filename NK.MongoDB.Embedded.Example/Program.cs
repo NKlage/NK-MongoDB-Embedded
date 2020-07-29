@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using NK.MongoDB.Embedded.Enums;
 using MongoDB.Entities;
 using MongoDB.Entities.Core;
@@ -12,9 +13,14 @@ namespace NK.MongoDB.Embedded.Example
             int mongoDbServerPort = 21020;
             
             MonogServerBuilder builder = new MonogServerBuilder()
-                .UseOs(Os.Linux)
-                .UseDistribution(Distribution.Ubuntu_1804)
                 .UseMongoVersion(MongoDbVersion.V4_2_8);
+            
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                builder.UseOs(Os.Windows);
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                builder.UseOs(Os.Osx);
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                builder.UseOs(Os.Linux).UseDistribution(Distribution.Ubuntu_1804);
             
             MongoServer mongoServer = new MongoServer(builder).UseMongoServerPort(mongoDbServerPort);
             mongoServer.Start().GetAwaiter().GetResult();
