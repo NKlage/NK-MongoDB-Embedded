@@ -72,4 +72,4 @@ Example:
 
 - Command line argument passed to server start
 - Pass MongoDB Configuration File
-- Configure download & data directory
+- Configure download & data directory => (NME-1)
